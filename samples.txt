@@ -1,0 +1,30 @@
+query Test {
+  q1: owners {
+      ...ownerFields
+  },
+  q2: owners {
+    name,
+    address
+  },
+  q3: owner (id: "514c3bc3-14df-4515-bc13-256e75dd2e9f") {
+    name
+  },
+  q4: accounts {
+    ...accountFields
+  }
+}
+
+fragment ownerFields on OwnerType {
+    id,
+    name,
+    address
+}
+
+fragment accountFields on AccountType {
+    id,
+  	accountType,
+  	description,
+  	owner {
+      ...ownerFields
+    }
+}
